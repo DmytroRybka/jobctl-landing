@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jobctl.app/sitemap.xml
