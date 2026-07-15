@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jobctl — Privacy Policy</title>
+  <meta name="description" content="Privacy policy for jobctl (app.jobctl.app) — what we collect, how we store it, and your rights." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%2318181B'/%3E%3Ctext x='18' y='96' font-family='monospace' font-size='104' font-weight='700' fill='%23ffffff'%3Ej%3C/text%3E%3Crect x='64' y='88' width='44' height='17' rx='5' fill='%237047EB'/%3E%3C/svg%3E" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111113; --border:#232327; --fg:#ededef; --muted:#8b8b93; --accent:#7047eb; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--fg); font-family:"Inter",system-ui,sans-serif; line-height:1.7; }
+    .wrap { max-width:760px; margin:0 auto; padding:48px 20px 80px; }
+    a { color:var(--accent); text-decoration:none; }
+    .logo { font-family:ui-monospace,monospace; font-weight:700; font-size:20px; }
+    h1 { font-size:30px; letter-spacing:-.5px; margin:28px 0 6px; }
+    .updated { color:var(--muted); font-size:13px; margin-bottom:32px; }
+    h2 { font-size:18px; margin:32px 0 8px; }
+    p, li { color:#c9c9cf; font-size:15px; }
+    ul { padding-left:22px; margin:8px 0; }
+    .card { border:1px solid var(--border); border-radius:12px; background:var(--surface); padding:16px 20px; margin:16px 0; font-size:14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="logo" href="/">jobctl<span style="color:var(--accent)">_</span></a>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 15 July 2026 · Applies to jobctl.app and app.jobctl.app</p>
+
+    <div class="card">
+      <b>In one paragraph:</b> jobctl stores the job-application data you (or your AI agent, on your instruction) put into it, plus your email for login. We don't sell data, we don't run ads, we don't use trackers, and we don't train AI models on your data. Export or delete everything anytime.
+    </div>
+
+    <h2>1. What we collect</h2>
+    <ul>
+      <li><b>Account:</b> your email address (used for magic-link sign-in only).</li>
+      <li><b>Application data you provide:</b> companies, roles, statuses, salaries, notes, interview details, attached CV/cover-letter files, company analyses, and match assessments — entered by you in the dashboard or written by an AI agent you connected via MCP/API using your token or OAuth grant.</li>
+      <li><b>Technical:</b> standard server logs (IP address, timestamps, request paths) for security and abuse prevention, retained for up to 30 days.</li>
+    </ul>
+    <p>We do <b>not</b> collect analytics, advertising identifiers, or the content of your conversations with AI assistants — an agent only sends jobctl the specific tool calls it makes.</p>
+
+    <h2>2. How we use it</h2>
+    <ul>
+      <li>To provide the service: store and display your job-application pipeline.</li>
+      <li>To authenticate you (magic-link emails, session cookies, API tokens, OAuth tokens).</li>
+      <li>To protect the service (rate limiting, abuse detection via server logs).</li>
+    </ul>
+    <p>No profiling, no advertising, no sale of personal data, and no use of your data to train machine-learning models.</p>
+
+    <h2>3. Storage &amp; security</h2>
+    <p>Data is stored in a PostgreSQL database hosted on Amazon Web Services in <b>eu-central-1 (Frankfurt, Germany)</b>, encrypted in transit (TLS) and at rest. Authentication secrets (tokens, codes) are stored only as SHA-256 hashes. OAuth access is scoped to your account and revocable in Settings → API tokens.</p>
+
+    <h2>4. Third parties</h2>
+    <ul>
+      <li><b>Amazon Web Services</b> — hosting and database (EU region).</li>
+      <li><b>Resend</b> — delivers magic-link sign-in emails (your email address only).</li>
+      <li><b>GitHub Pages</b> — serves this static website (jobctl.app); no account data touches it.</li>
+    </ul>
+    <p>We share data with no one else. No third party receives your application data.</p>
+
+    <h2>5. Data retention &amp; deletion</h2>
+    <ul>
+      <li>Your data is kept for as long as your account exists.</li>
+      <li><b>Export:</b> download everything as JSON anytime (Settings → Export).</li>
+      <li><b>Delete:</b> deleting your account (Settings) permanently and irreversibly removes all your data — applications, files, analyses, events, tokens — in line with GDPR Art. 17.</li>
+      <li>Server logs rotate within 30 days.</li>
+    </ul>
+
+    <h2>6. Your rights (GDPR)</h2>
+    <p>You have the right to access, rectify, export, and erase your personal data, and to object to or restrict processing. Most of these are self-service in the app; for anything else, email us.</p>
+
+    <h2>7. Contact</h2>
+    <p>Data controller: Dmytro Rybka, Germany.<br />
+    Email: <a href="mailto:dmytro@rybka.me">dmytro@rybka.me</a></p>
+
+    <h2>8. Changes</h2>
+    <p>If this policy changes materially, the "Last updated" date above changes and the current version is always published at <a href="https://jobctl.app/privacy/">jobctl.app/privacy</a>.</p>
+  </div>
+</body>
+</html>
