@@ -190,10 +190,32 @@
       <img src="demo-detail.webp" width="2162" height="1350" alt="jobctl applications list with an open detail: interviews with attendees and prep links, salary, next action and company analysis" loading="lazy" />
     </div>
 
+  </section>
+
+  <section class="wrap">
+    <h2>Three ways in</h2>
+    <p class="lead">Bring the agent you already use, or track from the terminal. Grab a token at <a href="https://app.jobctl.app" style="color:var(--accent)">app.jobctl.app/settings</a> first.</p>
+
     <div class="snippet">
-      <div class="label">connect your agent — 30 seconds</div>
+      <div class="label">1 · Claude Code plugin — gives Claude job-tracking instincts</div>
+      <pre>/plugin marketplace add DmytroRybka/jobctl-claude
+/plugin install jobctl@jobctl
+
+<span class="c-p"># then just talk:</span>
+<span class="c-u">"I applied to Bosch as Tech Lead, prio A, follow up friday"</span></pre>
+    </div>
+
+    <div class="snippet" style="margin-top:14px;">
+      <div class="label">2 · Any MCP client — Claude Code, Codex, Cursor, ChatGPT</div>
       <pre>claude mcp add --transport http jobctl https://app.jobctl.app/mcp \
   --header "Authorization: Bearer jc_..."</pre>
+    </div>
+
+    <div class="snippet" style="margin-top:14px;">
+      <div class="label">3 · Terminal CLI — no agent required</div>
+      <pre>npx jobctl login jc_...
+npx jobctl add "Bosch, Tech Lead, prio A, due friday, remote"
+npx jobctl due</pre>
     </div>
   </section>
 
