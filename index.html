@@ -265,12 +265,17 @@
 
     <div class="tabpanel snippet" id="tab-web">
       <div class="label">ChatGPT &amp; claude.ai (web) - OAuth, no token needed</div>
-      <pre><span class="c-p">1.</span> Settings → Connectors → Add custom connector
-<span class="c-p">2.</span> URL: <span class="c-t">https://app.jobctl.app/mcp</span>
-<span class="c-p">3.</span> Sign in with your jobctl account when prompted
+      <pre><span class="c-p"># claude.ai</span>
+<span class="c-p">1.</span> Settings → Connectors → Add custom connector → <span class="c-t">https://app.jobctl.app/mcp</span>
+
+<span class="c-p"># ChatGPT (Plus/Pro)</span>
+<span class="c-p">1.</span> Settings → Security and login → enable <span class="c-t">Developer mode</span>
+<span class="c-p">2.</span> Settings → Plugins → <span class="c-t">+</span> → MCP endpoint: <span class="c-t">https://app.jobctl.app/mcp</span> → Auth: OAuth
+<span class="c-p">3.</span> Enable jobctl in the chat tools menu
 
 <span class="c-p"># then just talk:</span>
 <span class="c-u">"recruiter call went well, interview next wed 2pm with Anna"</span></pre>
+      <img src="chatgpt-devmode.png" alt="ChatGPT settings: Security and login section with the Developer mode toggle enabled" loading="lazy" style="margin-top:12px; width:100%; max-width:640px; border:1px solid var(--border); border-radius:10px;" />
     </div>
 
     <div class="tabpanel snippet" id="tab-plugin">
