@@ -91,6 +91,14 @@
     .demo pre { padding: 18px 20px 22px; font-family: var(--mono); font-size: 13.5px; line-height: 1.75; overflow-x: auto; white-space: pre; }
     .c-p { color: var(--muted); } .c-u { color: var(--fg); } .c-t { color: var(--accent); } .c-ok { color: var(--green); }
 
+    /* install tabs */
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tab { padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--muted); font-size: 13px; font-family: inherit; cursor: pointer; }
+    .tab:hover:not(.active) { color: var(--fg); border-color: var(--muted); }
+    .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .tabpanel { display: none; }
+    .tabpanel.active { display: block; }
+
     /* app preview (browser mockup) */
     .preview { margin: 26px auto 0; max-width: 980px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); overflow: hidden; box-shadow: 0 40px 100px rgba(112,71,235,.10); }
     .preview-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
@@ -228,41 +236,74 @@
 
   <section class="wrap">
     <h2>Start in one minute</h2>
-    <p class="lead">Grab a token at <a href="https://app.jobctl.app/settings" style="color:var(--accent)">app.jobctl.app/settings</a>, connect your agent - done.</p>
+    <p class="lead">Pick your client - most connect with OAuth, CLIs take a token from <a href="https://app.jobctl.app/settings" style="color:var(--accent)">app.jobctl.app/settings</a>.</p>
 
-    <div class="snippet">
-      <div class="label">1 · Connect your agent - Claude Code, Codex, Cursor, ChatGPT (any MCP client)</div>
-      <pre><span class="c-p"># Claude Code</span>
-claude mcp add --transport http jobctl https://app.jobctl.app/mcp \
+    <div class="tabs" role="tablist" aria-label="Choose your client">
+      <button class="tab active" type="button" data-panel="tab-claude">Claude Code</button>
+      <button class="tab" type="button" data-panel="tab-codex">Codex CLI</button>
+      <button class="tab" type="button" data-panel="tab-web">ChatGPT &amp; claude.ai</button>
+      <button class="tab" type="button" data-panel="tab-plugin">Claude plugin</button>
+      <button class="tab" type="button" data-panel="tab-cli">Terminal CLI</button>
+    </div>
+
+    <div class="tabpanel active snippet" id="tab-claude">
+      <div class="label">Claude Code - one command, token from Settings</div>
+      <pre>claude mcp add --transport http jobctl https://app.jobctl.app/mcp \
   --header "Authorization: Bearer jc_..."
-
-<span class="c-p"># Codex CLI (OAuth sign-in opens automatically)</span>
-codex mcp add jobctl --url https://app.jobctl.app/mcp
-
-<span class="c-p"># ChatGPT &amp; claude.ai: Settings → Connectors → add https://app.jobctl.app/mcp</span>
 
 <span class="c-p"># then just talk:</span>
 <span class="c-u">"I applied to Bosch as Tech Lead, prio A, follow up friday"</span></pre>
     </div>
 
-    <div class="snippet" style="margin-top:14px;">
-      <div class="label">2 · Optional: Claude Code plugin - a skill that gives Claude job-tracking instincts</div>
+    <div class="tabpanel snippet" id="tab-codex">
+      <div class="label">Codex CLI - OAuth sign-in opens automatically, no token needed</div>
+      <pre>codex mcp add jobctl --url https://app.jobctl.app/mcp
+
+<span class="c-p"># then just talk:</span>
+<span class="c-u">"I applied to Bosch as Tech Lead, prio A, follow up friday"</span></pre>
+    </div>
+
+    <div class="tabpanel snippet" id="tab-web">
+      <div class="label">ChatGPT &amp; claude.ai (web) - OAuth, no token needed</div>
+      <pre><span class="c-p">1.</span> Settings → Connectors → Add custom connector
+<span class="c-p">2.</span> URL: <span class="c-t">https://app.jobctl.app/mcp</span>
+<span class="c-p">3.</span> Sign in with your jobctl account when prompted
+
+<span class="c-p"># then just talk:</span>
+<span class="c-u">"recruiter call went well, interview next wed 2pm with Anna"</span></pre>
+    </div>
+
+    <div class="tabpanel snippet" id="tab-plugin">
+      <div class="label">Claude Code plugin - a skill that gives Claude job-tracking instincts (connect MCP first)</div>
       <pre>/plugin marketplace add DmytroRybka/jobctl-claude
 /plugin install jobctl@jobctl
 
 <span class="c-u">"Siemens invited me to a Get2Know call, Thursday 9:00"</span>
-<span class="c-p">✓ status → interview_1 · interview logged with attendees · prep reminder set</span>
+<span class="c-p">✓ status → interview · interview logged with attendees · prep reminder set</span>
 
 <span class="c-u">"what's next in my job search?"</span>
 <span class="c-p">✓ due actions, upcoming interviews and follow-ups - straight from your pipeline</span></pre>
     </div>
 
-    <div class="snippet" style="margin-top:14px;">
-      <div class="label">3 · Terminal CLI - no agent required</div>
+    <div class="tabpanel snippet" id="tab-cli">
+      <div class="label">Terminal CLI - no agent required</div>
       <pre>npx jobctl login jc_...
 npx jobctl add "Bosch, Tech Lead, prio A, due friday, remote"
 npx jobctl due</pre>
     </div>
+
+    <script>
+      document.querySelectorAll('.tabs .tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.tabs .tab').forEach(function (b) {
+            b.classList.toggle('active', b === btn);
+          });
+          document.querySelectorAll('.tabpanel').forEach(function (p) {
+            p.classList.toggle('active', p.id === btn.dataset.panel);
+          });
+        });
+      });
+    </script>
   </section>
 
   <section class="free wrap">
