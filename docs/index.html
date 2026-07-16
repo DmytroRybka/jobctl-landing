@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jobctl docs — connect your agent</title>
+  <meta name="description" content="Step-by-step setup guides for jobctl: Claude Code, Codex CLI, ChatGPT, claude.ai, the Claude plugin and the terminal CLI." />
+  <link rel="canonical" href="https://jobctl.app/docs/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%2318181B'/%3E%3Ctext x='18' y='96' font-family='monospace' font-size='104' font-weight='700' fill='%23ffffff'%3Ej%3C/text%3E%3Crect x='64' y='88' width='44' height='17' rx='5' fill='%237047EB'/%3E%3C/svg%3E" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111113; --surface-2:#1b1b1f; --border:#232327; --fg:#ededef; --muted:#8b8b93; --accent:#7047eb; --green:#4ade80; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--fg); font-family:"Inter",system-ui,sans-serif; line-height:1.7; }
+    .wrap { max-width:820px; margin:0 auto; padding:48px 20px 80px; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .logo { font-family:var(--mono); font-weight:700; font-size:20px; color:var(--fg); }
+    h1 { font-size:30px; letter-spacing:-.5px; margin:28px 0 6px; }
+    .sub { color:var(--muted); font-size:15px; margin-bottom:28px; }
+    h2 { font-size:20px; margin:44px 0 10px; padding-top:8px; border-top:1px solid var(--border); }
+    h2 .chip { font-size:11px; font-weight:600; vertical-align:middle; margin-left:8px; padding:2px 8px; border-radius:999px; background:rgba(112,71,235,.15); color:#b49cf5; }
+    p, li { color:#c9c9cf; font-size:15px; }
+    ol { padding-left:22px; margin:8px 0; }
+    ol li { margin:6px 0; }
+    pre { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; font-family:var(--mono); font-size:13px; line-height:1.7; overflow-x:auto; margin:10px 0; white-space:pre; }
+    code { font-family:var(--mono); font-size:.92em; background:var(--surface-2); border:1px solid var(--border); border-radius:5px; padding:1px 6px; }
+    pre code { background:none; border:none; padding:0; }
+    .c-p { color:var(--muted); } .c-u { color:var(--fg); }
+    img.shot { width:100%; max-width:680px; display:block; border:1px solid var(--border); border-radius:10px; margin:12px 0; }
+    .toc { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+    .toc a { padding:6px 14px; border:1px solid var(--border); border-radius:999px; font-size:13px; color:var(--muted); }
+    .toc a:hover { color:var(--fg); border-color:var(--muted); text-decoration:none; }
+    .note { border:1px solid var(--border); border-left:3px solid var(--accent); background:var(--surface); border-radius:8px; padding:10px 14px; font-size:14px; color:#c9c9cf; margin:10px 0; }
+    footer { margin-top:56px; padding-top:16px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="logo" href="/">jobctl<span style="color:var(--accent)">_</span></a>
+    <h1>Connect your agent</h1>
+    <p class="sub">jobctl works with any MCP client. Every guide below ends the same way: you just talk about your job search, the agent keeps the tracker current, and you review at <a href="https://app.jobctl.app">app.jobctl.app</a>.</p>
+
+    <div class="toc">
+      <a href="#claude-code">Claude Code</a>
+      <a href="#codex">Codex CLI</a>
+      <a href="#chatgpt">ChatGPT</a>
+      <a href="#claude-ai">claude.ai</a>
+      <a href="#plugin">Claude plugin</a>
+      <a href="#cli">Terminal CLI</a>
+      <a href="#generic">Other clients</a>
+    </div>
+
+    <h2 id="claude-code">Claude Code <span class="chip">token</span></h2>
+    <ol>
+      <li>Create an API token at <a href="https://app.jobctl.app/settings">app.jobctl.app/settings</a> → API Tokens (shown once).</li>
+      <li>Run one command:</li>
+    </ol>
+    <pre>claude mcp add --transport http jobctl https://app.jobctl.app/mcp \
+  --header "Authorization: Bearer jc_..."</pre>
+    <pre><span class="c-p"># then just talk:</span>
+<span class="c-u">"I applied to Bosch as Tech Lead, prio A, follow up friday"</span></pre>
+
+    <h2 id="codex">Codex CLI <span class="chip">OAuth</span></h2>
+    <p>No token needed - Codex discovers jobctl's OAuth automatically and opens the sign-in.</p>
+    <pre>codex mcp add jobctl --url https://app.jobctl.app/mcp</pre>
+    <p>If the browser window does not open, run <code>codex mcp login jobctl</code>.</p>
+
+    <h2 id="chatgpt">ChatGPT <span class="chip">OAuth · Plus/Pro</span></h2>
+    <ol>
+      <li>Open <b>Settings → Security and login</b> and enable <b>Developer mode</b>:</li>
+    </ol>
+    <img class="shot" src="chatgpt-devmode.png" alt="ChatGPT settings: Security and login with the Developer mode toggle enabled" loading="lazy" />
+    <ol start="2">
+      <li>Open <b>Settings → Plugins</b> and click <b>+</b> (New Plugin).</li>
+      <li>Name it <code>jobctl</code>, set Connection → Server URL to <code>https://app.jobctl.app/mcp</code>, Authentication: <b>OAuth</b>, confirm the risk checkbox and hit <b>Create</b>.</li>
+      <li>ChatGPT shows "Add jobctl to ChatGPT" → <b>Sign in with jobctl</b> → enter your email → magic link → <b>Allow</b>.</li>
+      <li>In a chat, type <code>@jobctl</code> (or the name you gave the plugin) to invoke it - or enable it in the tools menu and just talk:</li>
+    </ol>
+    <img class="shot" src="chatgpt-mention.png" alt="ChatGPT composer with @jobctl mentioned: check my applications status" loading="lazy" />
+    <pre><span class="c-u">@jobctl check my applications status</span></pre>
+
+    <h2 id="claude-ai">claude.ai <span class="chip">OAuth</span></h2>
+    <ol>
+      <li>Open <b>Settings → Connectors → Add custom connector</b>.</li>
+      <li>URL: <code>https://app.jobctl.app/mcp</code></li>
+      <li>Sign in with your jobctl account when prompted.</li>
+    </ol>
+
+    <h2 id="plugin">Claude Code plugin <span class="chip">optional</span></h2>
+    <p>A skill that gives Claude job-tracking instincts - it records applications, interviews and rejections without being asked. Connect the MCP server first (see <a href="#claude-code">Claude Code</a>), then:</p>
+    <pre>/plugin marketplace add DmytroRybka/jobctl-claude
+/plugin install jobctl@jobctl</pre>
+    <pre><span class="c-u">"Siemens invited me to a Get2Know call, Thursday 9:00"</span>
+<span class="c-p">✓ status → interview · interview logged with attendees · prep reminder set</span></pre>
+
+    <h2 id="cli">Terminal CLI <span class="chip">token</span></h2>
+    <p>No agent required - the raw one-liner parser understands dates, priorities and sources.</p>
+    <pre>npx jobctl login jc_...
+npx jobctl add "Bosch, Tech Lead, prio A, due friday, remote"
+npx jobctl due</pre>
+
+    <h2 id="generic">Other MCP clients <span class="chip">token</span></h2>
+    <p>Cursor, Windsurf and most editors accept a standard MCP config block:</p>
+    <pre>{
+  "mcpServers": {
+    "jobctl": {
+      "type": "http",
+      "url": "https://app.jobctl.app/mcp",
+      "headers": {
+        "Authorization": "Bearer &lt;YOUR_API_TOKEN&gt;"
+      }
+    }
+  }
+}</pre>
+    <div class="note">Clients with OAuth support can skip the token entirely - jobctl advertises OAuth discovery at <code>/.well-known/oauth-authorization-server</code>.</div>
+
+    <footer>
+      <span>jobctl_ © 2026 Dmytro Rybka</span>
+      <span><a href="/">Home</a> · <a href="https://app.jobctl.app">Dashboard</a> · <a href="/privacy/">Privacy</a></span>
+    </footer>
+  </main>
+</body>
+</html>
