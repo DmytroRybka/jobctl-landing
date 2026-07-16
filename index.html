@@ -98,6 +98,9 @@
     .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
     .tabpanel { display: none; }
     .tabpanel.active { display: block; }
+    .doclink { margin: 10px 16px 14px; font-size: 13px; }
+    .doclink a { color: var(--accent); text-decoration: none; }
+    .doclink a:hover { text-decoration: underline; }
 
     /* app preview (browser mockup) */
     .preview { margin: 26px auto 0; max-width: 980px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); overflow: hidden; box-shadow: 0 40px 100px rgba(112,71,235,.10); }
@@ -253,6 +256,7 @@
 
 <span class="c-p"># then just talk:</span>
 <span class="c-u">"I applied to Bosch as Tech Lead, prio A, follow up friday"</span></pre>
+      <p class="doclink"><a href="/docs/#claude-code">Full guide →</a></p>
     </div>
 
     <div class="tabpanel snippet" id="tab-codex">
@@ -261,6 +265,7 @@
 
 <span class="c-p"># then just talk:</span>
 <span class="c-u">"I applied to Bosch as Tech Lead, prio A, follow up friday"</span></pre>
+      <p class="doclink"><a href="/docs/#codex">Full guide →</a></p>
     </div>
 
     <div class="tabpanel snippet" id="tab-web">
@@ -274,6 +279,7 @@
 
 <span class="c-p"># then just talk (type @jobctl to invoke it):</span>
 <span class="c-u">"@jobctl check my applications status"</span></pre>
+      <p class="doclink"><a href="/docs/#chatgpt">Full guide with screenshots →</a></p>
     </div>
 
     <div class="tabpanel snippet" id="tab-plugin">
@@ -286,6 +292,7 @@
 
 <span class="c-u">"what's next in my job search?"</span>
 <span class="c-p">✓ due actions, upcoming interviews and follow-ups - straight from your pipeline</span></pre>
+      <p class="doclink"><a href="/docs/#plugin">Full guide →</a></p>
     </div>
 
     <div class="tabpanel snippet" id="tab-cli">
@@ -293,6 +300,7 @@
       <pre>npx jobctl login jc_...
 npx jobctl add "Bosch, Tech Lead, prio A, due friday, remote"
 npx jobctl due</pre>
+      <p class="doclink"><a href="/docs/#cli">Full guide →</a></p>
     </div>
 
     <script>
